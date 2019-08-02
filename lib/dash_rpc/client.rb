@@ -15,7 +15,7 @@ module DashRPC
       self.user = user
       self.password = password
       self.host = args.fetch(:host, "localhost")
-      self.port = args.fetch(:port, "19332")
+      self.port = args.fetch(:port, "19998")
       self.debug = args.fetch(:debug, DashRPC.config.debug || false)
     end
 
@@ -27,14 +27,9 @@ module DashRPC
       request(:importaddress, address, label, rescan)
     end
 
-    def rescanblockchain(start_height=250000)
-      request(:rescanblockchain, start_height)
-    end
-
     def getconnectioncount
       request(:getconnectioncount)
     end
-
 
     def listtransactions(include_sending = false)
       txs = request(:listtransactions, "*", 100, 0, true)
